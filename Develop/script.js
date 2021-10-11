@@ -1,75 +1,60 @@
 // Assignment code here
 
 // Get references to the #generate element
+
 var generateBtn = document.querySelector("#generate");
 
-var upperCase = confirm("Do you want upper case letter")
+var upperCase = window.confirm("Do you want upper case letter")
 
-var lowerLetter = confirm("Do you want lower case letters?");
+var lowerCase = window.confirm("Do you want lower case letters?");
 
-var pLength = window.prompt("Welcome to Password Generator. Please select the length of Password. Your password must be 8 to 128 characters.")
+var numb = window.confirm("Do you want numbers?");
 
-var 
+var specialChar = window.confirm("Do you want special characters?");
 
-// Define the missing generatePassword function
-function generatePassword() {
-  console.log("Testing!");
-  
+var pLength = window.prompt("Welcome to Password Generator. Please select the length of Password. Your password must be 8 to 128 characters.");
+
+var pLengthInt = parseInt(pLength);
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 
-   
-    
-  // Ask for password length within 8-128
-  var chooseLength = window.prompt("Welcome to Password Generator. Please select the length of Password. Your password must be 8 to 128 characters.")
-    if (chooseLength < 8 || chooseLength > 128) {
-      window.alert("Please select a valid password length.");
-      return generatePassword();
+if (pLengthInt >= 8 && pLengthInt <= 128) {
+  function generatePassword() {
+    var emptyString = "";
+    var uCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var lCase = 'abcdefghijklmnopqrstuvwxyz';
+    var numbers = '0123456789';
+    var special = '!"#$%&\'()*+,-./:;<=>?@^[\\]^_`{|}~';
+
+    if (upperCase === true) {
+      emptyString += uCase;
     }
-   
-    var askCriteria = function() {
-      // Ask for password criteria
-      var input = window.prompt("Please select a Password Criteria. Enter 1 for numbers, 2 for special characters.")
-      // convert answer from prompt to integer option
-      input = parseInt(input);
-      // use switch case for options
-      switch (input) {
-        case 1:
-          random(passwordStyle.numbers);
-          break;
-        case 2:
 
-          break;
-
-        case 3:
-
-          break;
-          default:
-            window.alert("You did not pick a valid option. Try again.");
-            askCriteria();
-            break;
-      }
+    if (lowerCase === true) {
+      emptyString +=  lCase;
     }
-    askCriteria();
-    // }
-    // if (input === "" || input === null) {
-    //   window.alert("Please select a valid option");
-    //   return (input);
-    
-    
-  
 
-  // 2.   Validate input
-  // 3.   Generate Password
-  // 2.  Set password length limit
+    if (numb === true) {
+      emptyString += numbers;
+    }
 
+    if (specialChar === true) {
+      emptyString += special;
+    }
 
-  // 4.  Display Password
-  return "Generated Password";
-  
+    var password = "";
+    for (var i = 0; i < pLengthInt; i++) {
+      password += emptyString.charAt(Math.floor(Math.random() *  emptyString.length));
+    }
+    console.log(password);
+    return password;
+  }
+} else {
+  window.alert("Password must be between 8 and 128 characters.")
+  generatePassword();
 }
-
-
-
 
 // Write password to the #password input
 function writePassword() {
@@ -77,15 +62,4 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-    window.alert("Your password is " + password);
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-
-var passwordStyle = {
-  numbers: ['0','1','2','3','4','5','6','7','8','9'],
-
 }
