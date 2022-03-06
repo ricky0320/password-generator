@@ -21,6 +21,8 @@ Password Generator is an application that allows user to generate password with 
 No installation is required.
 
 ## Usage
+Deployed link: https://ricky0320.github.io/password-generator/ <br/>
+<br/>
 Screenshot: <br/>
 ![screenshot](./assets/images/pw-generator.jpg)<br/>
 
